@@ -22,6 +22,12 @@ mongoose
 
 const app = express()
 app.use(express.json())
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+});
 //Auth
 app.post('/auth/login', loginValidation, UserController.login)
 app.post('/auth/register', registerValidation, UserController.register)
@@ -37,5 +43,5 @@ app.listen(4444, err => {
     if (err) {
         return console.log(err)
     }
-    console.log('Server Started')
+    console.log('Server Started on 4444 port')
 })
