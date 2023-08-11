@@ -8,6 +8,7 @@ import {
 import * as UserController from './controllers/UserController.js'
 import * as PostController from './controllers/PostController.js'
 import checkAuth from './utils/checkAuth.js'
+import cors from 'cors'
 
 mongoose
     .connect(
@@ -21,13 +22,10 @@ mongoose
     })
 
 const app = express()
-app.use(express.json())
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    next();
-});
+//CORS
+app.use(cors())
+app.use(express.json())
 //Auth
 app.post('/auth/login', loginValidation, UserController.login)
 app.post('/auth/register', registerValidation, UserController.register)
