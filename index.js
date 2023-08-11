@@ -29,7 +29,13 @@ app.use((req, res, next) => {
     next();
 });
 //Auth
-app.post('/auth/login', loginValidation, UserController.login)
+app.post('/auth/login', loginValidation, UserController.login, {
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    }
+})
 app.post('/auth/register', registerValidation, UserController.register)
 app.get('/auth/me', checkAuth, UserController.getMe)
 //Posts
