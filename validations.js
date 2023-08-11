@@ -23,6 +23,7 @@ export const postCreateValidation = [
             min: 10,
         })
         .isString(),
+    body('category', 'Введите категорию').isLength({ min: 3 }).isString(),
     body('tags', 'Неверный формат тэгов (укажите массив)')
         .optional()
         .isString(),

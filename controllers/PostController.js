@@ -71,6 +71,7 @@ export const createPost = async (req, res) => {
         const doc = new PostModel({
             title: req.body.title,
             text: req.body.text,
+            category: req.body.category,
             imageUrl: req.body.imageUrl,
             tags: req.body.tags,
             user: req.userId,
@@ -95,6 +96,7 @@ export const updatePost = async (req, res) => {
             {
                 title: req.body.title,
                 text: req.body.text,
+                category: req.body.category,
                 imageUrl: req.body.imageUrl,
                 user: req.userId,
                 tags: req.body.tags,
